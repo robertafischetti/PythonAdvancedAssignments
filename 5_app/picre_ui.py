@@ -1,28 +1,22 @@
-#**********************************************************
-# Module: picre_ui
-#
-# Author = Roberta Fischetti
-#
-# Date = 2026-07-26
-#
-# Description = This is the Playblasy Magnager panel built using PySide6.
-# For testing purposes, this module can be run both inside and outside Maya.
-#**********************************************************
+"""---------------------------------------------------------------------------------------
+ Module: picre_ui
 
-""" This UI is made of 3 sections:
-1. Capture settings 
-    - it reads the active camera, frame range and resolution from the scene;
-2. Naming and path 
-    - it validates names and paths, ensuring every playblast
-      lands in the right folder with the right name at the next version;
-3. Burn-in overlays
-"""
+ Author = Roberta Fischetti
+
+ Date = 2026-07-28
+
+ Description = This UI is made of 3 sections:
+    - Capture settings (it reads the active camera, frame range and resolution from the scene);
+    - Naming and path (it validates names and paths, ensuring every playblast lands 
+                        in the right folder with the right name at the next version);
+    - Burn-in overlays.
+---------------------------------------------------------------------------------------"""
 
 import sys
-from pathlib import Path
 
 from PySide6 import QtCore, QtWidgets
 
+# to test the module both inside and outside Maya
 try:
     import maya.cmds as cmds
     import maya.OpenMayaUI as omui
@@ -39,7 +33,7 @@ if MAYA_AVAILABLE:
 Applying QSS (Qt Style Sheet) to the UI using the palette() function 
 that pulls colors straight from whatever theme is currently active.
 """
-
+# to be put in a config file
 STYLESHEET = """
 QWidget#root {
     background: palette(window);
@@ -76,7 +70,6 @@ QPushButton#primaryBtn:hover { palette(mid); }
 """
 
 # Burn-in fields 
-
 BURNIN_FIELD_ORDER = ["shot_name", "frame", "artist", "date", "camera_name"]
 
 BURNIN_FIELD_LABELS = {
@@ -112,9 +105,7 @@ def maya_main_window():
     return wrapInstance(int(main_window_ptr), QtWidgets.QWidget)
 
 class Card(QtWidgets.QFrame):
-    """ A customizable QFrame inside the main window
-        showing as a rounded-corner section container.
-    """
+    """ A customizable QFrame inside the main window showing as a rounded-corner section container."""
     def __init__(self, parent=None):
         super(Card, self).__init__(parent)
         self.setObjectName("card")
@@ -123,11 +114,7 @@ class Card(QtWidgets.QFrame):
         self.layout.setSpacing(10)
 
 class BurninPreview(QtWidgets.QFrame):
-    """
-    Schematic preview of where burn-in text will land on the frame.
-    For now it shows as a simple container, but there will be corner labels 
-    that update live as fields/checkboxes change. 
-    """
+    """Schematic preview of where burn-in text will land on the frame."""
     def __init__(self, parent=None):
         super(BurninPreview, self).__init__(parent)
         self.setObjectName("previewPanel")
@@ -137,21 +124,21 @@ class BurninPreview(QtWidgets.QFrame):
         grid.setContentsMargins(14, 10, 14, 10)
 
 class PlayblastManagerWidget(QtWidgets.QWidget):
-
     def __init__(self, parent=None):
         super(PlayblastManagerWidget, self).__init__(parent)
         self.setObjectName("root")
         self.setWindowTitle("Playblast Manager")
         self.setStyleSheet(STYLESHEET)
         self.setMinimumWidth(560)
+        
         self._build_ui()
 
     def _build_ui(self):
-        outer_window = QtWidgets.QVBoxLayout(self) # lines up child widgets in a vertical column from top to bottom
+        outer_window = QtWidgets.QVBoxLayout(self) 
         outer_window.setContentsMargins(20, 20, 20, 20)
         outer_window.setSpacing(14)
 
-        title_row = QtWidgets.QHBoxLayout() # construct horizontal box layout objects
+        title_row = QtWidgets.QHBoxLayout() 
         title = QtWidgets.QLabel("Playblast manager")
         title.setObjectName("panelTitle")
         title_row.addWidget(title)
@@ -166,10 +153,13 @@ class PlayblastManagerWidget(QtWidgets.QWidget):
     def _labeled_field(self, label_text, widget):
         col = QtWidgets.QVBoxLayout()
         col.setSpacing(3)
+
         label = QtWidgets.QLabel(label_text)
         label.setObjectName("fieldLabel")
+
         col.addWidget(label)
         col.addWidget(widget)
+
         return col
 
     def _build_capture_card(self):
@@ -192,7 +182,6 @@ class PlayblastManagerWidget(QtWidgets.QWidget):
 
         row = QtWidgets.QHBoxLayout()
         row.setSpacing(16)
-
         card.layout.addLayout(row)
 
         return card
@@ -229,6 +218,7 @@ class PlayblastManagerWidget(QtWidgets.QWidget):
         self.generate_btn.setObjectName("primaryBtn")
         self.generate_btn.setCursor(QtCore.Qt.PointingHandCursor)
         row.addWidget(self.generate_btn)
+
         return row
 
     def _enabled_burnin_fields(self):
