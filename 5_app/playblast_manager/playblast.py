@@ -5,7 +5,7 @@
 
  Date = 2026-08-06
 
- Description = First draft of the picre application.
+ Description = Generates the playblast with burnins.
 ---------------------------------------------------------------------------------------"""
 import os
 import getpass
@@ -44,10 +44,6 @@ def generate_playblast(project: str, sequence: str, shot: str, burnin_fields: li
     width, height = get_resolution()
     artist = artist or getpass.getuser()
 
-    # Hide every HUD -- ours and Maya's own defaults alike -- so the raw
-    # capture is a completely clean plate. Only ffmpeg's text will end
-    # up in the final video; whatever Maya happens to have on screen
-    # never leaks through. Always restored afterward, success or not.
     saved_hud_state = hide_all_huds()
     try:
         actual_raw_path = cmds.playblast(
@@ -62,7 +58,7 @@ def generate_playblast(project: str, sequence: str, shot: str, burnin_fields: li
     finally:
         restore_huds(saved_hud_state)
 
-    burn_in_with_ffmpeg(actual_raw_path, final_path, burnin_fields, shot, camera, artist, frame_start)
+    burn_in_with_ffmpeg(actual_raw_path, final_path, burnin_fields, filename, camera, artist, frame_start)
 
     print(f"Saved playblast (v{version_number}) to: {final_path}")
           

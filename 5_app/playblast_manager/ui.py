@@ -5,7 +5,7 @@
 
  Date = 2026-08-06
 
- Description = UI: A SIMPLE WINDOW -- NO QT, JUST MAYA'S OWN UI COMMANDS.
+ Description = A simple UI (no QT yet).
 ---------------------------------------------------------------------------------------"""
 import getpass
 
@@ -47,9 +47,7 @@ def show_ui():
     cmds.separator(height=12, style="in")
 
     def on_generate_clicked(*_args):
-        # Read every field's current value right now, at click-time --
-        # there's no "live" connection, we just ask each widget "what do
-        # you say right now?" the moment the button is pressed.
+        
         enabled_fields = []
         if cmds.checkBox(shot_name_box, query=True, value=True):
             enabled_fields.append("shot_name")

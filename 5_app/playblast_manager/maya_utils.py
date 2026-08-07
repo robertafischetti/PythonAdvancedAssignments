@@ -42,14 +42,11 @@ def get_resolution() -> tuple[int, int]:
 
 def hide_all_huds() -> list:
     """
-    Hide every HUD currently on screen -- including Maya's own built-in
-    ones (frame counter, poly count, etc.) -- so the raw capture is a
-    clean plate. Only the text ffmpeg draws afterward will appear in
-    the final video; nothing from Maya's own HUD setup can leak through.
+    Hide every HUD currently on screen, including Maya's own built-in
+    ones, so the raw capture is a clean plate.
 
     Returns a list of (name, was_visible) pairs, so everything can be
-    put back exactly how it was afterward -- this never permanently
-    changes your Maya HUD preferences.
+    put back exactly how it was afterward.
     """
     existing_huds = cmds.headsUpDisplay(query=True, listHeadsUpDisplays=True) 
     huds_saved_state = []

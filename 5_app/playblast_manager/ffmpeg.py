@@ -5,35 +5,25 @@
 
  Date = 2026-08-06
 
- Description = Everything related to FFmpeg.
+ Description = Works out the full path to the ffmpeg program and 
+                makes sure ffmpeg can actually be found and run.
 ---------------------------------------------------------------------------------------"""
 import os
 import shutil
-import platform
 import subprocess
 
 from playblast_manager.config import config
 
 
-# VARIABLES ------------------------------------------------------------------------------
-system = platform.system()
-
-settings = {
-    **config,
-    **config["platforms"][system],
-}
-
 # FUNCTIONS ------------------------------------------------------------------------------
 def find_ffmpeg() -> str:
     """
-    Work out the full path to the ffmpeg program.
-    This checks FFMPEG_PATH (which may have come from config.yaml), then PATH, then a few common
-    install locations.
+    Checks ffmpeg_path (from config.yaml), then PATH, then a few common install locations.
     """
     # 1. Explicit path from config
-    FFMPEG_PATH = settings["ffmpeg_path"]
-    if FFMPEG_PATH:
-        return FFMPEG_PATH
+    ffmpeg_path = config.platform.ffmpeg_path
+    if ffmpeg_path:
+        return ffmpeg_path
     
     # 2. Search PATH
     found = shutil.which("ffmpeg")
@@ -54,15 +44,14 @@ def find_ffmpeg() -> str:
         "Couldn't find ffmpeg anywhere -- not on Maya's PATH, and not in "
         "any of the usual install locations.\n\n"
         "Open a Terminal and run:  which ffmpeg\n"
-        "Then either paste the path it prints into FFMPEG_PATH near the "
+        "Then either paste the path it prints into ffmpeg_path near the "
         "top of this file, or add it to config.yaml as:\n"
         "    ffmpeg_bin: /the/folder/it/is/in"
     )
  
 def check_ffmpeg_available() -> str:
     """
-    Make sure ffmpeg can actually be found and run, and return the
-    exact path to use for it.
+    Make sure ffmpeg can actually be found and run, and return the exact path to use for it.
     """
     ffmpeg_path = find_ffmpeg()
     try:

@@ -9,23 +9,15 @@
 ---------------------------------------------------------------------------------------"""
 import os
 import time
-import platform
 import subprocess
 
-from playblast_manager.constants import CORNER_POSITIONS, BURNIN_CORNER_FOR_FIELD
 from playblast_manager.config import config
+from playblast_manager.constants import CORNER_POSITIONS, BURNIN_CORNER_FOR_FIELD
 
 from .ffmpeg import check_ffmpeg_available
 
 # VARIABLES ------------------------------------------------------------------------------
-system = platform.system()
-
-settings = {
-    **config,
-    **config["platforms"][system],
-}
-
-FONT_PATH = settings["font_path"]
+font_path = config.platform.font_path
 
 
 # FUNCTIONS ------------------------------------------------------------------------------
@@ -46,9 +38,8 @@ def one_drawtext(corner: str, literal_text: str) -> str:
     text = escape_drawtext(literal_text)
     position = CORNER_POSITIONS[corner]
     
-
     return (
-       f"drawtext=fontfile='{FONT_PATH}':text='{text}':{position}:fontsize=28:fontcolor=white:"
+       f"drawtext=fontfile='{font_path}':text='{text}':{position}:fontsize=28:fontcolor=white:"
         "box=1:boxcolor=black@0.5:boxborderw=6"
     )
 
@@ -69,7 +60,7 @@ def build_burnin_filters(enabled_fields: list, shot: str, camera: str, artist: s
     if "frame" in enabled_fields:
         frame_burnin_position = CORNER_POSITIONS[BURNIN_CORNER_FOR_FIELD["frame"]]
         filters.append(
-            f"drawtext=fontfile='{FONT_PATH}':text='Frame\\: %{{eif\\:n+{maya_frame_start}\\:d}}':{frame_burnin_position}:"
+            f"drawtext=fontfile='{font_path}':text='Frame\\: %{{eif\\:n+{maya_frame_start}\\:d}}':{frame_burnin_position}:"
             "fontsize=28:fontcolor=white:box=1:boxcolor=black@0.5:boxborderw=6"
         )
 
@@ -86,20 +77,22 @@ def burn_in_with_ffmpeg(raw_path: str, final_path: str, enabled_fields: list, sh
         # move the file instead of processing it
         os.replace(raw_path, final_path)
         return
-    # -y: overwrite existing file
-    # -i: input file = raw path
-    # -vf: apply video filter, which is filter chain
-    # -c:v is codec video, libx264 = h264
-    # -pix_fmt", "yuv420p -> video pixel format
+    
+    codec = config.ffmpeg.codec
+    pixel_format = config.ffmpeg.pixel_format
+    crf = str(config.ffmpeg.crf)
+
     command = [
-        ffmpeg_path, "-y", "-i", raw_path,
-        "-vf", filter_chain,
-        "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "23", # encoding options and video quality
-        final_path, # output
+        ffmpeg_path, "-y", "-i", raw_path,                      # -y: overwrite existing file, -i: input file = raw path
+        "-vf", filter_chain,                                    # -vf: apply video filter, which is filter chain
+        "-c:v", codec, "-pix_fmt", pixel_format, "-crf", crf,   # encoding options and video quality
+        final_path,                                             # output
     ]
+
     result = subprocess.run(command, capture_output=True, text=True)
-    # Check if FFmpeg succeeded
-    if result.returncode != 0: # 0 means success
+
+    # Check if FFmpeg succeeded, 0 means success
+    if result.returncode != 0: 
         raise RuntimeError("ffmpeg failed while burning in text:\n" + result.stderr[-1500:])
 
     os.remove(raw_path)
