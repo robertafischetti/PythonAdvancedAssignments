@@ -5,7 +5,8 @@
 
  Date = 2026-07-28
 
- Description = decorator - assignment: a) Create a decorator in decorator.py
+ Description = decorator - assignment: 
+    a) Create a decorator in decorator.py
  
     0. CONNECT the decorator "print_process" with all sleeping functions.
     Print START and END before and after.
@@ -24,12 +25,10 @@
         START - long_sleeping
 ---------------------------------------------------------------------------------------"""
 
-
 import time
 from datetime import datetime
 
-#*********************************************************************
-# DECORATOR
+# DECORATOR -------------------------------------------------------------
 def print_process(func):
     def wrapper(*args):
         start = datetime.now()
@@ -40,8 +39,8 @@ def print_process(func):
         print(f"processing time: {end - start}.")
     return wrapper
 
-#*********************************************************************
-# FUNCTIONS
+
+# FUNCTIONS -------------------------------------------------------------
 @print_process
 def short_sleeping(name):
     time.sleep(.1)
@@ -58,8 +57,7 @@ def long_sleeping(name):
     print(name)
 
 
-#*********************************************************************
-# START
+# START -------------------------------------------------------------
 short_sleeping("so sleepy")
 mid_sleeping("so sleepy")
 long_sleeping("so sleepy")
