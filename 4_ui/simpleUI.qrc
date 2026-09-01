@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="accept">
+    <file>img/btn_help.png</file>
+    <file>img/btn_accept.png</file>
+  </qresource>
+</RCC>
