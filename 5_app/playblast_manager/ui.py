@@ -11,8 +11,7 @@ import getpass
 
 import maya.cmds as cmds
 
-from playblast_manager.playblast import generate_playblast
-from .file_utils import get_default_project_root
+from playblast_manager.playblast import generate_playblast, get_default_project_root
 
 
 # FUNCTIONS ------------------------------------------------------------------------------
@@ -74,3 +73,7 @@ def show_ui():
     cmds.button(label="Generate Playblast", height=32, command=on_generate_clicked)
 
     cmds.showWindow(window)
+
+# START ------------------------------------------------------------------------------
+if __name__ == "__main__":
+    show_ui()

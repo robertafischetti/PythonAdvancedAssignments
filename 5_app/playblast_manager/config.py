@@ -37,6 +37,11 @@ class PlayblastConfig:
     version_padding: int
 
 @dataclass
+class BurninsConfig:
+    corner_positions: str
+    corner_fields: str
+
+@dataclass
 class PlatformConfig:
     ffmpeg_path: str
     font_path: str
@@ -45,6 +50,7 @@ class PlatformConfig:
 class Config:
     ffmpeg: FFmpegConfig
     playblast: PlayblastConfig
+    burnins: BurninsConfig
     platform: PlatformConfig
 
 
@@ -61,7 +67,6 @@ Used YAML instead of JSON because it is easier to read.
 """
 CONFIG_PATH = Path(__file__).parent / "config.yaml"
 
-
 # FUNCTIONS ------------------------------------------------------------------------------
 def load_config() -> Config:
 
@@ -73,6 +78,7 @@ def load_config() -> Config:
     return Config(
         ffmpeg=FFmpegConfig(**raw["ffmpeg"]),
         playblast=PlayblastConfig(**raw["playblast"]),
+        burnins=BurninsConfig(**raw["burnins"]),
         platform=PlatformConfig(**raw["platforms"][system]),
     )
 
