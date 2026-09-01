@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>464</height>
+    <height>500</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -227,7 +227,7 @@ QMenu::item:selected {
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit"/>
+      <widget class="QLineEdit" name="le_project"/>
      </item>
      <item>
       <widget class="QLabel" name="lb_sequence">
@@ -244,7 +244,7 @@ QMenu::item:selected {
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_2"/>
+      <widget class="QLineEdit" name="le_sequence"/>
      </item>
      <item>
       <widget class="QLabel" name="lb_shot">
@@ -264,7 +264,7 @@ QMenu::item:selected {
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_3"/>
+      <widget class="QLineEdit" name="le_shot"/>
      </item>
      <item>
       <widget class="QLabel" name="lb_artist">
@@ -281,7 +281,7 @@ QMenu::item:selected {
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_4"/>
+      <widget class="QLineEdit" name="le_artist"/>
      </item>
     </layout>
    </item>
@@ -293,7 +293,7 @@ QMenu::item:selected {
     </widget>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_3">
+    <layout class="QVBoxLayout" name="lay_burnins">
      <item>
       <widget class="QLabel" name="burnin_fields">
        <property name="font">
@@ -384,7 +384,7 @@ QMenu::item:selected {
     </widget>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_4">
+    <layout class="QVBoxLayout" name="lay_generate">
      <item>
       <widget class="QPushButton" name="btn_generatePlayblast">
        <property name="font">
@@ -401,8 +401,77 @@ QMenu::item:selected {
      </item>
     </layout>
    </item>
+   <item>
+    <widget class="Line" name="third_separator">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="lb_developer">
+       <property name="font">
+        <font>
+         <family>Tahoma</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>a tool by Roberta Fischetti</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_help">
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="playblast_manager_ui.qrc">
+         <normaloff>:/generatePlayblast/btn_help.png</normaloff>:/generatePlayblast/btn_help.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="playblast_manager_ui.qrc"/>
+ </resources>
  <connections/>
 </ui>
