@@ -13,15 +13,9 @@ import getpass
 import maya.cmds as cmds
 
 from .maya_utils import *
-#from .file_utils import resolve_output_path
 from .ffmpeg_utils import burn_in_with_ffmpeg
 from playblast_manager.config import config
-#from playblast_manager.constants import CORNER_POSITIONS, BURNIN_CORNER_FOR_FIELD
 
-# VARIABLES ------------------------------------------------------------------------------
-#font_path = config.platform.font_path
-#burnins_positions = config.burnins_positions
-#burnins_fields = config.burnins_fields
 
 # FUNCTIONS ------------------------------------------------------------------------------
 # Folders and Filenames Functions: where the file goes and what version it should be.              
@@ -124,7 +118,7 @@ def generate_playblast(project: str, sequence: str, shot: str, burnin_fields: li
 
     burn_in_with_ffmpeg(actual_raw_path, final_path, burnin_fields, filename, camera, artist, frame_start)
 
-    print(f"Saved playblast (v{version_number}) to: {final_path}")
+    print(f"Saved playblast (v{version_number}) to: {final_path}.")
           
     return final_path
 

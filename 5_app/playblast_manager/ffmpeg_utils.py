@@ -7,6 +7,7 @@
 
  Description = Works out the full path to the ffmpeg program and 
                 makes sure ffmpeg can actually be found and run.
+                Sets up the ffmpeg burn-ins.
 ---------------------------------------------------------------------------------------"""
 import os
 import time
@@ -94,8 +95,8 @@ def one_drawtext(corner: str, literal_text: str) -> str:
     position = burnins.corner_positions[corner]
     
     return (
-       f"drawtext=fontfile='{font_path}':text='{text}':{position}:fontsize=28:fontcolor=white:"
-        "box=1:boxcolor=black@0.5:boxborderw=6"
+       f"drawtext=fontfile='{font_path}':text='{text}':{position}:fontsize=32:fontcolor=white:"
+        "box=1:boxcolor=black@0.5:boxborderw=8"
     )
 
 def build_burnin_filters(enabled_fields: list, shot: str, camera: str, artist: str, maya_frame_start: int) -> str:
@@ -115,7 +116,7 @@ def build_burnin_filters(enabled_fields: list, shot: str, camera: str, artist: s
         frame_burnin_position = burnins.corner_positions[burnins.corner_fields["frame"]]#CORNER_POSITIONS[BURNIN_CORNER_FOR_FIELD["frame"]]
         filters.append(
             f"drawtext=fontfile='{font_path}':text='Frame\\: %{{eif\\:n+{maya_frame_start}\\:d}}':{frame_burnin_position}:"
-            "fontsize=28:fontcolor=white:box=1:boxcolor=black@0.5:boxborderw=6"
+            "fontsize=30:fontcolor=white:box=1:boxcolor=black@0.5:boxborderw=8"
         )
 
     return ",".join(filters)

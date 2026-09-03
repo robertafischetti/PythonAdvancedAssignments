@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>500</height>
+    <width>536</width>
+    <height>562</height>
    </rect>
   </property>
   <property name="maximumSize">
    <size>
     <width>600</width>
-    <height>500</height>
+    <height>600</height>
    </size>
   </property>
   <property name="font">
@@ -207,16 +207,50 @@ QMenu::item:selected {
 	border-radius: 10px;
 	border-color: rgb(58, 58, 58);
 	border-style: inset;
-}</string>
+}
+
+QCheckBox {
+    spacing: 8px;
+    color: white;
+    font-size: 14px;
+}
+
+QCheckBox::indicator {
+    width: 15px;
+    height: 15px;
+}
+
+QCheckBox::indicator:unchecked {
+	background-color: rgba(255, 193, 188, 125);
+    border: 1px solid white;
+    border-radius: 3px;
+}
+</string>
   </property>
   <layout class="QVBoxLayout" name="lay_playblastManager">
    <item>
     <layout class="QVBoxLayout" name="lay_naming">
+     <property name="spacing">
+      <number>5</number>
+     </property>
+     <property name="leftMargin">
+      <number>12</number>
+     </property>
+     <property name="topMargin">
+      <number>12</number>
+     </property>
+     <property name="rightMargin">
+      <number>12</number>
+     </property>
+     <property name="bottomMargin">
+      <number>12</number>
+     </property>
      <item>
       <widget class="QLabel" name="lb_project">
        <property name="font">
         <font>
          <family>Tahoma</family>
+         <pointsize>14</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -227,13 +261,27 @@ QMenu::item:selected {
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="le_project"/>
+      <widget class="QLineEdit" name="le_project">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Tahoma</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="lb_sequence">
        <property name="font">
         <font>
          <family>Tahoma</family>
+         <pointsize>14</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -244,13 +292,27 @@ QMenu::item:selected {
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="le_sequence"/>
+      <widget class="QLineEdit" name="le_sequence">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Tahoma</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="lb_shot">
        <property name="font">
         <font>
          <family>Tahoma</family>
+         <pointsize>14</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -264,13 +326,27 @@ QMenu::item:selected {
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="le_shot"/>
+      <widget class="QLineEdit" name="le_shot">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Tahoma</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="lb_artist">
        <property name="font">
         <font>
          <family>Tahoma</family>
+         <pointsize>14</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -281,12 +357,34 @@ QMenu::item:selected {
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="le_artist"/>
+      <widget class="QLineEdit" name="le_artist">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Tahoma</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
    <item>
     <widget class="Line" name="first_separator">
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 193, 188);</string>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="lineWidth">
+      <number>2</number>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -294,12 +392,27 @@ QMenu::item:selected {
    </item>
    <item>
     <layout class="QVBoxLayout" name="lay_burnins">
+     <property name="spacing">
+      <number>12</number>
+     </property>
+     <property name="leftMargin">
+      <number>12</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>12</number>
+     </property>
+     <property name="bottomMargin">
+      <number>12</number>
+     </property>
      <item>
       <widget class="QLabel" name="burnin_fields">
        <property name="font">
         <font>
          <family>Tahoma</family>
-         <pointsize>13</pointsize>
+         <pointsize>14</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -307,15 +420,26 @@ QMenu::item:selected {
        <property name="text">
         <string>Burn-in overlays</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+       <property name="margin">
+        <number>1</number>
+       </property>
+       <property name="indent">
+        <number>-1</number>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QCheckBox" name="cb_shotName">
        <property name="font">
         <font>
-         <family>Tahoma</family>
-         <pointsize>14</pointsize>
+         <pointsize>-1</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Shot name</string>
@@ -326,8 +450,7 @@ QMenu::item:selected {
       <widget class="QCheckBox" name="cb_frameNumber">
        <property name="font">
         <font>
-         <family>Tahoma</family>
-         <pointsize>14</pointsize>
+         <pointsize>-1</pointsize>
         </font>
        </property>
        <property name="text">
@@ -339,8 +462,7 @@ QMenu::item:selected {
       <widget class="QCheckBox" name="cb_artist">
        <property name="font">
         <font>
-         <family>Tahoma</family>
-         <pointsize>14</pointsize>
+         <pointsize>-1</pointsize>
         </font>
        </property>
        <property name="text">
@@ -352,8 +474,7 @@ QMenu::item:selected {
       <widget class="QCheckBox" name="cb_date">
        <property name="font">
         <font>
-         <family>Tahoma</family>
-         <pointsize>14</pointsize>
+         <pointsize>-1</pointsize>
         </font>
        </property>
        <property name="text">
@@ -365,8 +486,7 @@ QMenu::item:selected {
       <widget class="QCheckBox" name="cb_camera">
        <property name="font">
         <font>
-         <family>Tahoma</family>
-         <pointsize>14</pointsize>
+         <pointsize>-1</pointsize>
         </font>
        </property>
        <property name="text">
@@ -378,6 +498,15 @@ QMenu::item:selected {
    </item>
    <item>
     <widget class="Line" name="second_separator">
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 193, 188);</string>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="lineWidth">
+      <number>2</number>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -385,6 +514,15 @@ QMenu::item:selected {
    </item>
    <item>
     <layout class="QVBoxLayout" name="lay_generate">
+     <property name="leftMargin">
+      <number>12</number>
+     </property>
+     <property name="rightMargin">
+      <number>12</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
      <item>
       <widget class="QPushButton" name="btn_generatePlayblast">
        <property name="font">
@@ -403,15 +541,24 @@ QMenu::item:selected {
    </item>
    <item>
     <widget class="Line" name="third_separator">
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 193, 188);</string>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="lineWidth">
+      <number>2</number>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="lay_footer">
      <item>
-      <spacer name="horizontalSpacer">
+      <spacer name="horizontalSpaceleft">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -428,11 +575,17 @@ QMenu::item:selected {
        <property name="font">
         <font>
          <family>Tahoma</family>
-         <pointsize>11</pointsize>
+         <pointsize>12</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 193, 188);</string>
        </property>
        <property name="text">
         <string>a tool by Roberta Fischetti</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -448,13 +601,13 @@ QMenu::item:selected {
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="playblast_manager_ui.qrc">
-         <normaloff>:/generatePlayblast/btn_help.png</normaloff>:/generatePlayblast/btn_help.png</iconset>
+        <iconset resource="../playblast_manager_ui.qrc">
+         <normaloff>:/playblast/images/btn_help.png</normaloff>:/playblast/images/btn_help.png</iconset>
        </property>
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer_2">
+      <spacer name="horizontalSpacerright">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -471,7 +624,7 @@ QMenu::item:selected {
   </layout>
  </widget>
  <resources>
-  <include location="playblast_manager_ui.qrc"/>
+  <include location="../playblast_manager_ui.qrc"/>
  </resources>
  <connections/>
 </ui>

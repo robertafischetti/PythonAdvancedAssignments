@@ -10,11 +10,11 @@ playblast:
 
 burnins:
   corner_positions:
-    top_left: "x=20:y=20"
-    top_right: "x=w-tw-20:y=20"
-    bottom_left: "x=20:y=h-th-20"
-    bottom_center: "x=(w-tw)/2:y=h-th-20"
-    bottom_right: "x=w-tw-20:y=h-th-20"
+    top_left: "x=40:y=40"
+    top_right: "x=w-tw-40:y=40"
+    bottom_left: "x=40:y=h-th-40"
+    bottom_center: "x=(w-tw)/2:y=h-th-40"
+    bottom_right: "x=w-tw-40:y=h-th-40"
   
   corner_fields:
     shot_name: "top_left"
