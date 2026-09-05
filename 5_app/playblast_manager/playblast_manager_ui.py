@@ -85,6 +85,6 @@ class PlayblastManagerUI(QtWidgets.QWidget):
         """
         open wiki on Gitub when pressing the help button
         """
-        webbrowser.open("https://github.com/robertafischetti/picre/wiki")
+        webbrowser.open("https://github.com/robertafischetti/PythonAdvancedAssignments/wiki")
 
 
